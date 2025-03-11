@@ -46,14 +46,23 @@ void test_memcpy() {
     for (r = l + 1; r <= N; r++) {
       reset();
       unsigned char val = (l + r) / 2;
-      unsigned char val_arr[N];
-      for (int i = 0; i < N; i++) {
-        val_arr[i] = val;
-      }
+      unsigned char val_arr[N] = {val};
       memcpy(data + l, val_arr, r - l);
       check_seq(0, l, 1);
       check_eq(l, r, val);
       check_seq(r, N, r + 1);
+    }
+  }
+}
+
+void test_strlen() {
+  int l, r;
+  for (l = 0; l < N; l++) {
+    for (r = l + 1; r <= N; r++) {
+      reset();
+      data[r] = '\0';
+      size_t len = strlen((const char *) data);
+      assert(len == (r - l));
     }
   }
 }
