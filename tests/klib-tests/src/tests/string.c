@@ -46,8 +46,11 @@ void test_memcpy() {
     for (r = l + 1; r <= N; r++) {
       reset();
       unsigned char val = (l + r) / 2;
-      unsigned char val_arr[N] = {val};
-      memcpy(data, val_arr, r - l);
+      unsigned char val_arr[N];
+      for (int i = 0; i < N; i++) {
+        val_arr[i] = val;
+      }
+      memcpy(data + l, val_arr, r - l);
       check_seq(0, l, 1);
       check_eq(l, r, val);
       check_seq(r, N, r + 1);
