@@ -12,5 +12,7 @@ int main() {
 	sprintf(buf, "%d + %d = %d\n", 2, 10, 12);
 	check(strcmp(buf, "2 + 10 = 12\n") == 0);
 
+	printf("%s\n", "Hello NEMU!");
+
 	return 0;
 }
