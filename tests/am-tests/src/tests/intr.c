@@ -7,7 +7,9 @@ Context *simple_trap(Event ev, Context *ctx) {
     case EVENT_IRQ_IODEV:
       putch('d'); break;
     case EVENT_YIELD:
-      putch('y'); break;
+      putch('y');
+      ctx->mepc += 4; // MEPC should be added by 4 when it is YIELD
+      break;
     default:
       panic("Unhandled event"); break;
   }
@@ -22,5 +24,6 @@ void hello_intr() {
   while (1) {
     for (volatile int i = 0; i < 10000000; i++) ;
     yield();
+    printf("\nback from yeild()\n");
   }
 }
