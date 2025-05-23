@@ -1,4 +1,5 @@
 #include <am.h>
+#include <klib.h>
 #include <klib-macros.h>
 
 #define STACK_SIZE (4096 * 8)
@@ -26,6 +27,8 @@ int main() {
   cte_init(schedule);
   pcb[0].cp = kcontext((Area) { pcb[0].stack, &pcb[0] + 1 }, f, (void *)1L);
   pcb[1].cp = kcontext((Area) { pcb[1].stack, &pcb[1] + 1 }, f, (void *)2L);
+  printf("before main yield\n");
   yield();
+  printf("after main yield\n");
   panic("Should not reach here!");
 }

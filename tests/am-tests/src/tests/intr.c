@@ -8,7 +8,6 @@ Context *simple_trap(Event ev, Context *ctx) {
       putch('d'); break;
     case EVENT_YIELD:
       putch('y');
-      ctx->mepc += 4; // MEPC should be added by 4 when it is YIELD
       break;
     default:
       panic("Unhandled event"); break;
